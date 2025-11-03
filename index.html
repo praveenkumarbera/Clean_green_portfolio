@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clean and Green Protfolio — Praveen Kumar Bera</title>
+
+  <style>
+    :root{
+      --bg: #f6fbf8;
+      --card: #ffffff;
+      --muted: #475569;
+      --accent-blue: #a80f9e;
+      --accent-green: #0a8d48;
+      --soft-border: #e6eef0;
+      --shadow: 0 10px 30px rgba(6,22,39,0.08);
+      --nav-bg: linear-gradient(180deg,#a80f9e,#e249d3);
+      --flow-color: #0a8d48; /* green flow */
+      --flow-glow: rgba(10,141,72,0.45);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#06202a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Layout */
+    .app{display:flex;min-height:100vh}
+    aside.sidebar{width:300px;background:var(--nav-bg);color:#fff;padding:28px 22px;display:flex;flex-direction:column;gap:18px;align-items:flex-start;box-shadow:4px 0 20px rgba(3,10,25,0.08);position:fixed;left:0;top:0;bottom:0}
+    .sidebar .brand{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px}
+    .sidebar .meta{font-size:13px;color:#d7e9ff}
+    nav.nav{width:100%;margin-top:6px}
+    nav.nav a{display:block;padding:12px 12px;margin:8px 0;border-radius:8px;color:var(--muted);background:transparent;text-decoration:none;font-weight:600;color:#d7e9ff;transition:all 180ms ease;cursor:pointer}
+    nav.nav a:hover{transform: translateX(6px); color:#fff}
+    nav.nav a.active{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02)}
+    .sidebar footer{margin-top:auto;font-size:13px;color:#cfe7ff}
+
+    /* Main content */
+    main.content{margin-left:300px;padding:40px;width:calc(100% - 300px);transition: width 200ms ease}
+    header.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:16px}
+    header.top h1{font-size:22px;margin:0;color:var(--accent-blue)}
+
+    /* Card / section */
+    .section-card{background:var(--card);border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:var(--shadow);overflow:hidden;position:relative;border:1px solid var(--soft-border)}
+    .section-title{font-size:18px;color:var(--accent-green);font-weight:700;margin-bottom:10px}
+    .media-grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+    .diagram{height:260px;border-radius:10px;background:#fbfffe;border:1px solid #e6f5ef;display:flex;align-items:center;justify-content:center;padding:12px;position:relative;overflow:hidden}
+    .diagram img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+    .photo-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .photo-row img{width:110px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #eef6f1;box-shadow:0 8px 20px rgba(10,141,72,0.04)}
+    .explain{margin-top:12px;color:var(--muted);line-height:1.65}
+    .explain h4{margin:12px 0 6px;color:var(--accent-blue);font-size:15px}
+    .notes{margin-top:12px;font-size:13px;color:#374151;background:#fbfffb;border-left:4px solid #dff8e8;padding:10px;border-radius:6px}
+
+    /* Flow animation styles */
+    .flow{fill:none;stroke:var(--flow-color);stroke-width:4;stroke-linecap:round;stroke-dasharray:14 10;animation:dash 1.6s linear infinite, glow 1.8s ease-in-out infinite}
+    .flow-bg{fill:none;stroke:rgba(10,141,72,0.12);stroke-width:8;stroke-linecap:round}
+
+    @keyframes dash{to{stroke-dashoffset:-24}}
+    @keyframes glow{50%{filter:drop-shadow(0 0 8px var(--flow-glow))}}
+
+    /* visibility animation */
+    .view{opacity:0;transform:translateY(16px) scale(0.98);transition:all 420ms cubic-bezier(.2,.9,.3,1)}
+    .view.show{opacity:1;transform:translateY(0) scale(1)}
+    .view.zoom-in{transform:scale(0.96);opacity:0;transition:all 420ms cubic-bezier(.2,.9,.3,1)}
+    .view.zoom-in.show{transform:scale(1);opacity:1}
+
+    @media (max-width:1000px){aside.sidebar{position:relative;width:100%;height:auto;display:flex;flex-direction:row;align-items:center;padding:14px;gap:10px}nav.nav{display:flex;gap:10px;overflow:auto}nav.nav a{white-space:nowrap}main.content{margin-left:0;padding:18px;width:100%}.media-grid{grid-template-columns:1fr}.diagram{height:220px}}
+  </style>
+</head>
+<body>
+
+  <div class="app">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <div class="brand">🌿 Clean & Green Portfolio</div>
+      
+
+      <nav class="nav" id="nav">
+        <a class="active" data-target="home">🏠 Home</a>
+        <a data-target="hybrid">🌤 Activity 1 — Solar–Wind Hybrid System</a>
+        <a data-target="otec">🌊 Activity 2 — OTEC (Ocean Thermal Energy Conversion)</a>
+        <a data-target="biogas">♻ Activity 3 — Biogas Plant System</a>
+      </nav>
+
+      <footer>⚡ Prepared for Clean & Green Energy — Submit-ready</footer>
+    </aside>
+
+    <main class="content">
+      <header class="top">
+        <h1>Clean & Green Energy — Project Portfolio</h1>
+      </header>
+
+      <!-- HOMEPAGE -->
+      <section id="home" class="section-card view show" data-name="home">
+        <div class="hero">
+          <h2><strong>INTRODUCTION</strong></h2>
+          <p>Renewable energy harnesses nature's power to create sustainable solutions, reducing reliance on fossil fuels and combating climate change through systems like tidal, biomass, and geothermal technologies.</p>
+        </div>
+
+        <div class="section-card">
+          <div style="display:flex;gap:18px;align-items:center">
+            <div style="flex:1">
+              <p><strong>Name:</strong> Praveen Kumar Bera</p>
+              <p><strong>Reg No:</strong> RA231100301011430</p>
+              <p><strong>Department:</strong> CTECH</p>
+              <p><strong>Section:</strong> C2</p>
+              <p><strong>Subject:</strong> Clean and Green Energy</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Hybrid Solar–Wind -->
+      <section id="hybrid" class="section-card view show" data-name="hybrid">
+        <div class="section-title">🌤 Activity 1 — Solar–Wind Hybrid System (Rural Clinic)</div>
+
+        <div class="media-grid">
+          <!-- left: flow diagram (animated SVG) -->
+          <div>
+            <div class="diagram" aria-hidden="true" id="hybridDiagram">
+              <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#d7f3ff"/>
+                    <stop offset="1" stop-color="#f7fff7"/>
+                  </linearGradient>
+                </defs>
+
+                <rect x="10" y="12" width="150" height="60" rx="8" fill="url(#g1)" stroke="#cfeffd"/>
+                <text x="85" y="44" font-size="13" text-anchor="middle" fill="#073047">Solar PV Array</text>
+
+                <rect x="10" y="110" width="150" height="60" rx="8" fill="url(#g1)" stroke="#cfeffd"/>
+                <text x="85" y="142" font-size="13" text-anchor="middle" fill="#073047">Wind Turbine</text>
+
+                <rect x="240" y="60" width="150" height="80" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="315" y="100" font-size="13" text-anchor="middle" fill="#073047">Hybrid Controller</text>
+
+                <rect x="420" y="36" width="190" height="64" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="515" y="74" font-size="13" text-anchor="middle" fill="#073047">Battery Bank + BMS</text>
+
+                <rect x="240" y="170" width="370" height="62" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="430" y="205" font-size="13" text-anchor="middle" fill="#073047">Inverter & AC Panel → Clinic Loads</text>
+
+                <!-- animated flow paths -->
+                <path class="flow-bg" d="M160 44 L240 100" />
+                <path class="flow" d="M160 44 L240 100" />
+
+                <path class="flow-bg" d="M160 142 L240 120" />
+                <path class="flow" d="M160 142 L240 120" />
+
+                <path class="flow-bg" d="M390 94 L420 94" />
+                <path class="flow" d="M390 94 L420 94" />
+
+                <path class="flow-bg" d="M515 100 L515 170" />
+                <path class="flow" d="M515 100 L515 170" />
+
+              </svg>
+            </div>
+
+            
+          </div>
+
+          <!-- right: explanation -->
+          <div>
+            <div class="explain">
+              <h4>Source of energy:</h4>
+              <p>Complementary inputs from rooftop solar PV arrays and a small wind turbine (3–5 kW). Solar provides daytime energy, while wind often produces at night; hybridization increases availability and reduces storage needs.</p>
+
+              <h4>Conversion process:</h4>
+              <p>PV modules produce DC that is routed through MPPT controllers. Turbine output (AC) is rectified and conditioned. A hybrid energy management controller coordinates inputs, charges a battery bank through a BMS, and feeds an inverter that supplies AC to critical clinic loads. Automatic transfer to a grid or diesel genset is supported where needed.</p>
+
+              <h4>Output / utilization:</h4>
+              <p>Designed to power vaccine refrigeration (cold chain), lighting, diagnostics, communications, and emergency systems at a rural health clinic. Batteries sized to guarantee autonomy for required hours during low generation periods.</p>
+
+              <h4>Real-world relevance:</h4>
+              <p>Reduces diesel consumption and operating costs for healthcare facilities in remote areas; improves uptime for life-critical systems and supports community resilience.</p>
+
+              <div class="notes"><strong>Design notes:</strong> Perform site-specific resource assessment (insolation & wind), size battery for autonomy (24–72h), provide surge/lighting protection and remote telemetry for monitoring.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: OTEC -->
+      <section id="otec" class="section-card view" data-name="otec" aria-hidden="true" style="display:none">
+        <div class="section-title">🌊 Activity 2 — Ocean Thermal Energy Conversion (OTEC)</div>
+
+        <div class="media-grid">
+          <div>
+            <div class="diagram" id="otecDiagram" aria-hidden="true">
+              <!-- simplified OTEC block diagram -->
+              <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <rect x="10" y="20" width="230" height="60" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="125" y="56" font-size="13" text-anchor="middle" fill="#073047">Warm Surface Water (25–30°C)</text>
+
+                <rect x="280" y="20" width="140" height="60" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="350" y="56" font-size="13" text-anchor="middle" fill="#073047">Evaporator (ORC)</text>
+
+                <rect x="450" y="20" width="140" height="60" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="520" y="56" font-size="13" text-anchor="middle" fill="#073047">Turbine + Generator</text>
+
+                <rect x="280" y="140" width="310" height="80" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="435" y="186" font-size="13" text-anchor="middle" fill="#073047">Cold Deep Sea Water (4–5°C) — Condenser & Heat Sink</text>
+
+                <path class="flow-bg" d="M240 50 L280 50" />
+                <path class="flow" d="M240 50 L280 50" />
+
+                <path class="flow-bg" d="M420 50 L450 50" />
+                <path class="flow" d="M420 50 L450 50" />
+
+                <path class="flow-bg" d="M520 80 L520 140" />
+                <path class="flow" d="M520 80 L520 140" />
+              </svg>
+            </div>
+
+            
+          </div>
+
+          <div>
+            <div class="explain">
+              <h4>Source of energy:</h4>
+              <p>OTEC harnesses the temperature difference between warm surface seawater and cold deep seawater. Tropical ocean regions with stable thermal gradients (≥ 20°C at depth) are most suitable.</p>
+
+              <h4>Conversion process:</h4>
+              <p>Warm surface water evaporates a low-boiling working fluid (ORC), driving a turbine-generator. Cold deep seawater condenses the vapor in a heat exchanger and the working fluid is recirculated. Closed-loop (ORC) systems reduce environmental impact.</p>
+
+              <h4>Output / utilization:</h4>
+              <p>Base-load electricity generation for coastal communities, plus co-benefits like seawater air-conditioning, desalination, and aquaculture. OTEC plants can provide continuous power independent of weather.</p>
+
+              <h4>Real-world relevance:</h4>
+              <p>Promising for tropical islands and coastal regions with deep continental shelves; provides stable renewable power and desalinated water — beneficial for energy-poor island nations.</p>
+
+              <div class="notes"><strong>Design notes:</strong> Requires deep water close to shore or long intake pipes, corrosion-resistant materials, and environmental assessment to minimize ecological impacts.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Biogas -->
+      <section id="biogas" class="section-card view" data-name="biogas" aria-hidden="true" style="display:none">
+        <div class="section-title">♻ Activity 3 — Biogas Plant System</div>
+
+        <div class="media-grid">
+          <div>
+            <div class="diagram" id="biogasDiagram" aria-hidden="true">
+              <!-- biogas simple diagram -->
+              <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <rect x="10" y="20" width="180" height="60" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="100" y="54" font-size="13" text-anchor="middle" fill="#073047">Feedstock (Manure / Wastewater)</text>
+
+                <rect x="240" y="20" width="200" height="100" rx="10" fill="#fff" stroke="#dbeef3"/>
+                <text x="340" y="70" font-size="13" text-anchor="middle" fill="#073047">Anaerobic Digester (Biogas Production)</text>
+
+                <rect x="480" y="20" width="160" height="60" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="560" y="54" font-size="13" text-anchor="middle" fill="#073047">Biogas Cleanup & Storage</text>
+
+                <rect x="240" y="140" width="320" height="80" rx="8" fill="#fff" stroke="#dbeef3"/>
+                <text x="400" y="186" font-size="13" text-anchor="middle" fill="#073047">Gas Engine / Generator → Use (Cooking / Electricity)</text>
+
+                <path class="flow-bg" d="M190 50 L240 70" />
+                <path class="flow" d="M190 50 L240 70" />
+
+                <path class="flow-bg" d="M440 70 L480 50" />
+                <path class="flow" d="M440 70 L480 50" />
+
+                <path class="flow-bg" d="M340 120 L340 140" />
+                <path class="flow" d="M340 120 L340 140" />
+              </svg>
+            </div>
+
+            
+          </div>
+
+          <div>
+            <div class="explain">
+              <h4>Source of energy:</h4>
+              <p>Organic waste (animal manure, crop residues, food waste) is anaerobically digested to produce biogas (mainly methane and CO₂). Feedstock selection is adaptable to local agriculture/household waste streams.</p>
+
+              <h4>Conversion process:</h4>
+              <p>Biomass is fed into a sealed digester where microbes break it down anaerobically, generating biogas. The gas is cleaned (H₂S, moisture removal), stored, and used in gas engines or for cooking/heating.</p>
+
+              <h4>Output / utilization:</h4>
+              <p>Biogas provides cooking fuel, electricity via gas engines, and heat for local processes. Digestate is a nutrient-rich biofertilizer, closing nutrient cycles for farms.</p>
+
+              <h4>Real-world relevance:</h4>
+              <p>Offers waste management, reduces open burning, improves air quality, and supplies affordable local energy—especially useful for villages and farms.</p>
+
+              <div class="notes"><strong>Design notes:</strong> Size digester to feedstock availability and retention time; include gas scrubbing, safety valves, and consider co-digestion to improve yield.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer style="margin-top:22px;color:#4b5563;font-size:13px">Prepared by Praveen Kumar Bera • RA2311003011430 — Clean & Green Protfolio</footer>
+    </main>
+  </div>
+
+  <script>
+    // Sidebar navigation + animated show/hide
+    (function(){
+      const nav = document.getElementById('nav');
+      const links = nav.querySelectorAll('a[data-target]');
+      const sections = document.querySelectorAll('.section-card.view');
+
+      function hideAll(){
+        sections.forEach(s=>{
+          s.classList.remove('show','zoom-in');
+          // for accessibility
+          s.style.display = 'none';
+          s.setAttribute('aria-hidden','true');
+        });
+        links.forEach(l=>l.classList.remove('active'));
+      }
+
+      function showSection(targetLink){
+        const id = targetLink.dataset.target;
+        const sec = document.getElementById(id);
+        if(!sec) return;
+        // hide others
+        hideAll();
+        // set active link
+        targetLink.classList.add('active');
+
+        // animate in: fade+slide up + zoom
+        sec.style.display = 'block';
+        // allow next frame for transition
+        requestAnimationFrame(()=>{
+          sec.classList.add('show','zoom-in');
+          sec.setAttribute('aria-hidden','false');
+          // scroll into view
+          sec.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      }
+
+      // attach events
+      links.forEach(link=>{
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          showSection(this);
+        });
+      });
+
+      // initial state: show first link's section
+      if(links.length) showSection(links[0]);
+
+    })();
+  </script>
+</body>
+</html>
