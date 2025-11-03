@@ -71,6 +71,13 @@
     .view.zoom-in.show{transform:scale(1);opacity:1}
 
     @media (max-width:1000px){aside.sidebar{position:relative;width:100%;height:auto;display:flex;flex-direction:row;align-items:center;padding:14px;gap:10px}nav.nav{display:flex;gap:10px;overflow:auto}nav.nav a{white-space:nowrap}main.content{margin-left:0;padding:18px;width:100%}.media-grid{grid-template-columns:1fr}.diagram{height:220px}.photo-row img{max-width:100%;height:auto}}
+
+    /* small print styles */
+    @media print{
+      aside.sidebar{display:none}
+      main.content{margin:0;width:100%}
+      .section-card{box-shadow:none;border:1px solid #ddd}
+    }
   </style>
 </head>
 <body>
@@ -78,13 +85,12 @@
   <div class="app">
     <aside class="sidebar" role="navigation" aria-label="Main navigation">
       <div class="brand">🌿 Clean & Green Portfolio</div>
-      
 
       <nav class="nav" id="nav">
-        <a class="active" data-target="home">🏠 Home</a>
-        <a data-target="hybrid">🌤 Activity 1 — Solar–Wind Hybrid System</a>
-        <a data-target="otec">🌊 Activity 2 — OTEC (Ocean Thermal Energy Conversion)</a>
-        <a data-target="biogas">♻ Activity 3 — Biogas Plant System</a>
+        <a class="active" data-target="home" tabindex="0">🏠 Home</a>
+        <a data-target="hybrid" tabindex="0">🌤 Activity 1 — Solar–Wind Hybrid System</a>
+        <a data-target="otec" tabindex="0">🌊 Activity 2 — OTEC (Ocean Thermal Energy Conversion)</a>
+        <a data-target="biogas" tabindex="0">♻ Activity 3 — Biogas Plant System</a>
       </nav>
 
       <footer>⚡ Prepared for Clean & Green Energy — Submit-ready</footer>
@@ -111,7 +117,6 @@
               <p><strong>Section:</strong> C2</p>
               <p><strong>Subject:</strong> Clean and Green Energy</p>
             </div>
-            
           </div>
         </div>
       </section>
@@ -166,7 +171,7 @@
             <!-- ONE PHOTO after the block diagram -->
             <div class="photo-row">
               <!-- Replace src with your real image path/file name -->
-              <img src="assets/hybrid.jpg" alt="Solar panels and a small wind turbine powering a rural clinic" loading="lazy">
+              <img src="1539766918742402.jpg" alt="Solar panels and a small wind turbine powering a rural clinic" loading="lazy" onerror="this.src='https://picsum.photos/seed/hybrid/720/440'">
             </div>
           </div>
 
@@ -226,7 +231,7 @@
             <!-- ONE PHOTO after the block diagram -->
             <div class="photo-row">
               <!-- Replace src with your real image path/file name -->
-              <img src="assets/otec.jpg" alt="Illustration or photo of an OTEC platform drawing warm surface water and cold deep water" loading="lazy">
+              <img src="oceanthermal.png" alt="Illustration or photo of an OTEC platform drawing warm surface water and cold deep water" loading="lazy" onerror="this.src='https://picsum.photos/seed/otec/720/440'">
             </div>
           </div>
 
@@ -285,7 +290,7 @@
             <!-- ONE PHOTO after the block diagram -->
             <div class="photo-row">
               <!-- Replace src with your real image path/file name -->
-              <img src="assets/biogas.jpg" alt="Small biogas digester setup with gas storage balloon and piping" loading="lazy">
+              <img src="biogas-Plant.jpg" alt="Small biogas digester setup with gas storage balloon and piping" loading="lazy" onerror="this.src='https://picsum.photos/seed/biogas/720/440'">
             </div>
           </div>
 
@@ -295,10 +300,65 @@
               <p>Organic waste (animal manure, crop residues, food waste) is anaerobically digested to produce biogas (mainly methane and CO₂). Feedstock selection is adaptable to local agriculture/household waste streams.</p>
 
               <h4>Conversion process:</h4>
-              <p>Biomass is fed into a sealed digester where microbes break it down anaerobically, generating biogas. The gas is cleaned (H₂S, moisture removal), stored, and used in gas engines or for cooking/heating.</p>
+              <p>Biomass is fed into a sealed digester where microbes break it down anaerobically, generating biogas. The gas is cleaned (H₂S and moisture removal), stored, and used in gas engines or for cooking/heating.</p>
 
               <h4>Output / utilization:</h4>
-              <p>Biogas provides cooking fuel, electricity via gas engines, and heat for local processes. Digestate is a nutrient-rich biofertilizer, closing nutrient cycles for farms.</p>
+              <p>Biogas provides clean cooking fuel, electricity via gas engines, and heat for local processes. The remaining digestate is a nutrient-rich biofertilizer, closing nutrient cycles for farms.</p>
 
               <h4>Real-world relevance:</h4>
-              <p>Offers waste management, reduc
+              <p>Offers waste management, reduces methane emissions from open decomposition, cuts LPG/diesel usage, and supports circular economy benefits for farms, hostels, and small communities.</p>
+
+              <div class="notes"><strong>Design notes:</strong> Maintain mesophilic temperature (≈35°C) for stable gas yield, include slurry inlet/outlet safety traps, use PVC/HDPE piping with flame arrestors, and plan digestate handling for fields or vermicompost.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card view" id="credits">
+        <div class="section-title">📎 Submission Notes</div>
+        <ul style="margin:0 0 0 18px; color: var(--muted); line-height:1.7">
+          <li>Single-file portfolio; images expected in <code>/assets</code> as <code>hybrid.jpg</code>, <code>otec.jpg</code>, <code>biogas.jpg</code>. If missing, fallback placeholder images load automatically.</li>
+          <li>Click the left menu to switch sections. Keyboard users can focus links and press <kbd>Enter</kbd>.</li>
+          <li>Print-friendly styles included. Use the browser's Print to export PDF.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // nav switching
+    (function(){
+      const nav = document.getElementById('nav');
+      const links = nav.querySelectorAll('a[data-target]');
+      const sections = Array.from(document.querySelectorAll('main .section-card[data-name]'));
+
+      function show(id){
+        sections.forEach(sec => {
+          const match = sec.getAttribute('data-name') === id;
+          sec.style.display = match ? '' : 'none';
+          sec.setAttribute('aria-hidden', match ? 'false' : 'true');
+          if (match) sec.classList.add('show');
+        });
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('data-target') === id));
+      }
+
+      links.forEach(a => {
+        a.addEventListener('click', () => show(a.getAttribute('data-target')));
+        a.addEventListener('keydown', (e)=>{ if(e.key==='Enter') show(a.getAttribute('data-target')); });
+      });
+
+      // on load, ensure Home is visible only
+      show('home');
+    })();
+
+    // simple intersection observer for reveal animations
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+      },{threshold:0.1});
+      document.querySelectorAll('.view').forEach(el=> io.observe(el));
+    })();
+  </script>
+</body>
+</html>
