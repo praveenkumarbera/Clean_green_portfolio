@@ -52,7 +52,7 @@
     .diagram{height:260px;border-radius:10px;background:#fbfffe;border:1px solid #e6f5ef;display:flex;align-items:center;justify-content:center;padding:12px;position:relative;overflow:hidden}
     .diagram img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
     .photo-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .photo-row img{width:110px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #eef6f1;box-shadow:0 8px 20px rgba(10,141,72,0.04)}
+    .photo-row img{width:100%;max-width:360px;height:220px;object-fit:cover;border-radius:10px;border:1px solid #eef6f1;box-shadow:0 8px 20px rgba(10,141,72,0.04)}
     .explain{margin-top:12px;color:var(--muted);line-height:1.65}
     .explain h4{margin:12px 0 6px;color:var(--accent-blue);font-size:15px}
     .notes{margin-top:12px;font-size:13px;color:#374151;background:#fbfffb;border-left:4px solid #dff8e8;padding:10px;border-radius:6px}
@@ -70,7 +70,7 @@
     .view.zoom-in{transform:scale(0.96);opacity:0;transition:all 420ms cubic-bezier(.2,.9,.3,1)}
     .view.zoom-in.show{transform:scale(1);opacity:1}
 
-    @media (max-width:1000px){aside.sidebar{position:relative;width:100%;height:auto;display:flex;flex-direction:row;align-items:center;padding:14px;gap:10px}nav.nav{display:flex;gap:10px;overflow:auto}nav.nav a{white-space:nowrap}main.content{margin-left:0;padding:18px;width:100%}.media-grid{grid-template-columns:1fr}.diagram{height:220px}}
+    @media (max-width:1000px){aside.sidebar{position:relative;width:100%;height:auto;display:flex;flex-direction:row;align-items:center;padding:14px;gap:10px}nav.nav{display:flex;gap:10px;overflow:auto}nav.nav a{white-space:nowrap}main.content{margin-left:0;padding:18px;width:100%}.media-grid{grid-template-columns:1fr}.diagram{height:220px}.photo-row img{max-width:100%;height:auto}}
   </style>
 </head>
 <body>
@@ -163,7 +163,11 @@
               </svg>
             </div>
 
-            
+            <!-- ONE PHOTO after the block diagram -->
+            <div class="photo-row">
+              <!-- Replace src with your real image path/file name -->
+              <img src="assets/hybrid.jpg" alt="Solar panels and a small wind turbine powering a rural clinic" loading="lazy">
+            </div>
           </div>
 
           <!-- right: explanation -->
@@ -219,7 +223,11 @@
               </svg>
             </div>
 
-            
+            <!-- ONE PHOTO after the block diagram -->
+            <div class="photo-row">
+              <!-- Replace src with your real image path/file name -->
+              <img src="assets/otec.jpg" alt="Illustration or photo of an OTEC platform drawing warm surface water and cold deep water" loading="lazy">
+            </div>
           </div>
 
           <div>
@@ -274,7 +282,11 @@
               </svg>
             </div>
 
-            
+            <!-- ONE PHOTO after the block diagram -->
+            <div class="photo-row">
+              <!-- Replace src with your real image path/file name -->
+              <img src="assets/biogas.jpg" alt="Small biogas digester setup with gas storage balloon and piping" loading="lazy">
+            </div>
           </div>
 
           <div>
@@ -289,67 +301,4 @@
               <p>Biogas provides cooking fuel, electricity via gas engines, and heat for local processes. Digestate is a nutrient-rich biofertilizer, closing nutrient cycles for farms.</p>
 
               <h4>Real-world relevance:</h4>
-              <p>Offers waste management, reduces open burning, improves air quality, and supplies affordable local energy—especially useful for villages and farms.</p>
-
-              <div class="notes"><strong>Design notes:</strong> Size digester to feedstock availability and retention time; include gas scrubbing, safety valves, and consider co-digestion to improve yield.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer style="margin-top:22px;color:#4b5563;font-size:13px">Prepared by Praveen Kumar Bera • RA2311003011430 — Clean & Green Protfolio</footer>
-    </main>
-  </div>
-
-  <script>
-    // Sidebar navigation + animated show/hide
-    (function(){
-      const nav = document.getElementById('nav');
-      const links = nav.querySelectorAll('a[data-target]');
-      const sections = document.querySelectorAll('.section-card.view');
-
-      function hideAll(){
-        sections.forEach(s=>{
-          s.classList.remove('show','zoom-in');
-          // for accessibility
-          s.style.display = 'none';
-          s.setAttribute('aria-hidden','true');
-        });
-        links.forEach(l=>l.classList.remove('active'));
-      }
-
-      function showSection(targetLink){
-        const id = targetLink.dataset.target;
-        const sec = document.getElementById(id);
-        if(!sec) return;
-        // hide others
-        hideAll();
-        // set active link
-        targetLink.classList.add('active');
-
-        // animate in: fade+slide up + zoom
-        sec.style.display = 'block';
-        // allow next frame for transition
-        requestAnimationFrame(()=>{
-          sec.classList.add('show','zoom-in');
-          sec.setAttribute('aria-hidden','false');
-          // scroll into view
-          sec.scrollIntoView({behavior:'smooth',block:'start'});
-        });
-      }
-
-      // attach events
-      links.forEach(link=>{
-        link.addEventListener('click', function(e){
-          e.preventDefault();
-          showSection(this);
-        });
-      });
-
-      // initial state: show first link's section
-      if(links.length) showSection(links[0]);
-
-    })();
-  </script>
-</body>
-</html>
+              <p>Offers waste management, reduc
